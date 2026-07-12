@@ -3,6 +3,7 @@ from __future__ import annotations
 import re
 from datetime import datetime, timezone
 from typing import Callable
+from urllib.parse import urljoin, urlparse
 
 from ._http import default_http_get
 from .base import SourceResult
@@ -43,9 +44,11 @@ class AdmItalyAdapter:
             raise RuntimeError(
                 f"could not find elenco_siti_inibiti_giochi.txt link on {self._index_url}"
             )
-        list_url = match.group(1)
-        if list_url.startswith("/"):
-            list_url = BASE_URL + list_url
+        list_url = urljoin(self._index_url, match.group(1))
+        if urlparse(list_url).netloc != urlparse(BASE_URL).netloc:
+            raise RuntimeError(
+                f"refusing to fetch list from unexpected host: {list_url!r}"
+            )
 
         raw_text = self._http_get(list_url)
         domains = {line.strip() for line in raw_text.splitlines() if line.strip()}
