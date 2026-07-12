@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "version": "2026.07.11-1",
+  "generatedAt": "2026-07-12T02:14:28Z",
+  "rulesUrl": "https://maxostrander3.github.io/reclaim-blocklist/blocklist/v1/blockerList.json",
+  "rulesSha256": "5b284c61b17bdbe68b0e6c7e566ad40d69f308981136c9ffae3a8e76980603b8",
+  "rulesByteSize": 271658,
+  "domainCount": 12448,
+  "sources": [
+    {
+      "id": "adm-italy-inhibited",
+      "fetchedAt": "2026-07-12T02:14:28Z",
+      "domainCount": 12448
+    }
+  ],
+  "minAppVersion": "1.0.0"
+}

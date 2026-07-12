@@ -1,0 +1,64 @@
+# Hand-curated seed list of major legal, licensed US gambling operators.
+#
+# Government/regulator blocklists (e.g. adm-italy-inhibited) and state
+# licensee registries (e.g. nj-dge-igaming-sites) only ever list operators
+# that are UNLICENSED or licensed in that specific jurisdiction -- neither
+# captures "every legal US gambling brand" on its own, since a legal
+# operator is by definition not on an illegal-operator list, and a single
+# state's registry misses brands not licensed in that state. This file
+# fills that gap with brands verified directly (official site / press /
+# regulator mentions) as of the date below, so it does not depend on any
+# single state's registry for national brand coverage.
+#
+# Last verified: 2026-07-11
+#
+# Maintenance note: this list drifts -- operators rebrand (ESPN Bet ->
+# theScore Bet, Dec 2025), get acquired (PointsBet's US business folded
+# into Fanatics in 2024), or exit markets (WynnBET scaled back to
+# Nevada-resort-only). Re-verify each domain before trusting it; don't
+# assume a brand name maps to the "obvious" domain.
+
+# --- National/multi-state sportsbooks & casino ---
+draftkings.com
+fanduel.com
+betmgm.com
+caesars.com
+bet365.com
+betfanatics.com
+thescore.bet
+betrivers.com
+hardrock.bet
+ballybet.com
+circasports.com
+betfredsports.com
+
+# --- Daily fantasy sports (real-money, gambling-adjacent) ---
+prizepicks.com
+underdogsports.com
+
+# --- Sweepstakes / social casino (real-money-adjacent via sweeps coins) ---
+chumbacasino.com
+luckylandslots.com
+pulsz.com
+wowvegas.com
+mcluck.com
+stake.us
+
+# --- Sweepstakes / social sportsbooks (sports-pick'em focused, same
+# sweeps-coin legal model as the casinos above, but betting-shaped rather
+# than slots-shaped -- same addiction-relevant category as Fliff) ---
+getfliff.com
+rebet.app
+betr.app
+sleeper.com
+novig.com
+novig.us
+sportzino.com
+thrillzz.com
+legendz.com
+onyxodds.com
+# Considered and deliberately excluded: Dabble (ambiguous -- an unrelated
+# Australian bookmaker owns dabble.com.au; couldn't confirm a distinct
+# domain for the US real-money pick'em app of the same name) and
+# Stakester (stakester.com is now a review/directory site, not an
+# operator itself, as of 2026-07-11).
