@@ -14,9 +14,9 @@ The app polls these two paths (locked in — do not change without updating
 the app):
 
 - Manifest (poll this frequently, it's small):
-  `https://maxostrander3.github.io/reclaim-blocklist/blocklist/v1/manifest.json`
+  `https://maximillianux.github.io/reclaim-blocklist/blocklist/v1/manifest.json`
 - Rules (fetch only when `manifest.rulesSha256` changes):
-  `https://maxostrander3.github.io/reclaim-blocklist/blocklist/v1/blockerList.json`
+  `https://maximillianux.github.io/reclaim-blocklist/blocklist/v1/blockerList.json`
 
 The URL is fixed — it does not change per release. The app detects a new
 release by comparing `manifest.rulesSha256` against the last SHA it saw,
@@ -57,6 +57,35 @@ adapters (raw domain strings) -> normalize.py -> merge/dedupe/sort -> two JSON f
   UUID) changes on every republish, so the adapter resolves the current
   link from the index page each run rather than hardcoding the document
   URL.
+
+- **`nj-dge-igaming-sites`** (`src/adapters/nj_dge.py`) — New Jersey's
+  Division of Gaming Enforcement publishes the authoritative list of
+  internet gaming and sports wagering sites licensed in NJ, as actual
+  domains (not just operator/brand names) — covers both mainstream
+  national sportsbooks (`casino.draftkings.com`, `casino.fanduel.com`,
+  `nj.betmgm.com`, ...) and the long tail of NJ-specific casino/poker
+  skins. It's a hand-authored HTML table with no semantic markup, so the
+  adapter walks the table structure (any row with exactly 3 cells —
+  number, checkmark icon, domain text — is a data row) rather than
+  regexing the page directly.
+
+- **`known-us-operators`** (`src/adapters/known_operators.py`) — a
+  hand-curated seed list (`src/adapters/data/known_us_operators.txt`) of
+  major legal US gambling brands, verified against official sites/press
+  as of the date noted in the file. This exists because government and
+  state-licensee sources are structurally incapable of covering "every
+  legal gambling brand": an illegal-operator blocklist by definition
+  excludes legal operators, and any single state's registry misses
+  brands not licensed in that state (e.g. DraftKings/FanDuel don't
+  appear in ADM Italy's list because they're legal, and wouldn't appear
+  in, say, a Michigan-only registry if they're not licensed there).
+  Unlike the other adapters, this one reads a local file instead of
+  fetching over the network — it changes only when someone edits it.
+  **This list needs periodic manual re-verification**: operators
+  rebrand (ESPN Bet → theScore Bet, Dec 2025), get acquired (PointsBet's
+  US business folded into Fanatics in 2024), or exit markets (WynnBET
+  scaled back to Nevada-resort-only) — don't assume a brand name maps to
+  the "obvious" domain without checking.
 
 ## Adding a new source adapter
 
@@ -124,7 +153,11 @@ behavior. If tighter cache control becomes necessary later, put a CDN
 
 ## Out of scope (this pass)
 
-- Delta/patch files — the full list is small enough (~270KB at ~12k
+- Delta/patch files — the full list is small enough (~270KB at ~12.5k
   domains) that the app just re-downloads it whole.
 - Per-user allowlists/customization — handled app-side.
 - Auth, rate limiting, analytics.
+- More state licensee registries (PA, MI, CO, etc.) — NJ is the first
+  because its list conveniently ships actual domains in HTML; other
+  states' registries may be PDF-only or company-name-only and need their
+  own investigation before an adapter is worth writing.

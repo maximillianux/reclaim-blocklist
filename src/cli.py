@@ -9,6 +9,8 @@ from pathlib import Path
 
 from .adapters.adm_italy import AdmItalyAdapter
 from .adapters.base import SourceAdapter
+from .adapters.known_operators import KnownOperatorsAdapter
+from .adapters.nj_dge import NjDgeAdapter
 from .generate import build_blocker_list_bytes, build_manifest, next_version, run_pipeline
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
@@ -16,10 +18,14 @@ DOCS_DIR = REPO_ROOT / "docs" / "blocklist" / "v1"
 MANIFEST_PATH = DOCS_DIR / "manifest.json"
 BLOCKER_PATH = DOCS_DIR / "blockerList.json"
 
-RULES_URL = "https://maxostrander3.github.io/reclaim-blocklist/blocklist/v1/blockerList.json"
+RULES_URL = "https://maximillianux.github.io/reclaim-blocklist/blocklist/v1/blockerList.json"
 MIN_APP_VERSION = "1.0.0"
 
-ADAPTERS: list[SourceAdapter] = [AdmItalyAdapter()]
+ADAPTERS: list[SourceAdapter] = [
+    AdmItalyAdapter(),
+    NjDgeAdapter(),
+    KnownOperatorsAdapter(),
+]
 
 
 def _load_previous() -> tuple[dict | None, set[str]]:

@@ -1,10 +1,10 @@
 from __future__ import annotations
 
 import re
-import urllib.request
 from datetime import datetime, timezone
 from typing import Callable
 
+from ._http import default_http_get
 from .base import SourceResult
 
 INDEX_URL = "https://www.adm.gov.it/portale/en/siti-web-inibiti-giochi"
@@ -17,15 +17,6 @@ BASE_URL = "https://www.adm.gov.it"
 _LIST_LINK_RE = re.compile(
     r'href="([^"]*elenco_siti_inibiti_giochi\.txt[^"]*)"', re.IGNORECASE
 )
-
-_USER_AGENT = "reclaim-blocklist/1.0 (+https://github.com/maxostrander3/reclaim-blocklist)"
-
-
-def _default_http_get(url: str, timeout: int = 30) -> str:
-    req = urllib.request.Request(url, headers={"User-Agent": _USER_AGENT})
-    with urllib.request.urlopen(req, timeout=timeout) as resp:  # noqa: S310
-        charset = resp.headers.get_content_charset() or "utf-8"
-        return resp.read().decode(charset, errors="replace")
 
 
 class AdmItalyAdapter:
@@ -43,7 +34,7 @@ class AdmItalyAdapter:
         http_get: Callable[[str], str] | None = None,
     ):
         self._index_url = index_url
-        self._http_get = http_get or _default_http_get
+        self._http_get = http_get or default_http_get
 
     def fetch(self) -> SourceResult:
         index_html = self._http_get(self._index_url)
