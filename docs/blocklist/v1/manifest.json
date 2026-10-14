@@ -1,25 +1,25 @@
 {
   "schemaVersion": 1,
-  "version": "2026.09.24-1",
-  "generatedAt": "2026-09-24T08:51:56Z",
+  "version": "2026.10.14-1",
+  "generatedAt": "2026-10-14T09:08:58Z",
   "rulesUrl": "https://maximillianux.github.io/reclaim-blocklist/blocklist/v1/blockerList.json",
-  "rulesSha256": "916c859be00153ac909a68b7e38fba147092764f3f9cb3fee1699305c8d25fea",
-  "rulesByteSize": 277868,
-  "domainCount": 12760,
+  "rulesSha256": "4359b574e3913f6c747bc4cd3adc6a10bf902c6c197f05e4841f27c58fe0dddd",
+  "rulesByteSize": 285233,
+  "domainCount": 13140,
   "sources": [
     {
       "id": "adm-italy-inhibited",
-      "fetchedAt": "2026-09-24T08:51:54Z",
-      "domainCount": 12699
+      "fetchedAt": "2026-10-14T09:08:56Z",
+      "domainCount": 13079
     },
     {
       "id": "nj-dge-igaming-sites",
-      "fetchedAt": "2026-09-24T08:51:56Z",
+      "fetchedAt": "2026-10-14T09:08:58Z",
       "domainCount": 37
     },
     {
       "id": "known-us-operators",
-      "fetchedAt": "2026-09-24T08:51:56Z",
+      "fetchedAt": "2026-10-14T09:08:58Z",
       "domainCount": 30
     }
   ],
